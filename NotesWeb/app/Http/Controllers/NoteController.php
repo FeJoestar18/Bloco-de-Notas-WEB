@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $notes = Note::all();
-        return view('notes.index', compact('notes'));
+         $query = Note::query();
+
+         if($request->filled('search')){
+             $query->where('title', 'like', '%' . $request->search . '%')
+                   ->orWhere('content', 'like', '%' . $request->search . '%');
+         }
+
+            $notes = $query->get();
+
+            return view('notes.index', compact('notes'));
     }
 
     public function create()
