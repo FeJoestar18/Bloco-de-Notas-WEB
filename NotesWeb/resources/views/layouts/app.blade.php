@@ -9,16 +9,44 @@
     <link rel="stylesheet" href="{{ asset('css/notes/create.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notes/edit.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notes/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="topbar">
-    <div class="logo">📝 Bloco de Notas</div>
-    <a href="{{ route('home') }}">Início</a>
-    <a href="{{ route('notes.index') }}">Ver Notas</a>
-    <a href="{{ route('notes.create') }}">Criar Nota</a>
-{{--    <a href="#">Minhas Notas</a>--}}
-{{--    <a href="#">Cadastrar</a>--}}
+    <div class="logo">📝 Web Notes</div>
+
+    <div class="main-menu">
+        <a href="{{ route('home') }}">Início</a>
+        <a href="{{ route('notes.index') }}">Todas as Notas</a>
+
+        @auth
+            <a href="{{ route('notes.create') }}">Criar Nota</a>
+            <a href="{{ route('notes.index') }}?mine=true">Minhas Notas</a>
+        @endauth
+    </div>
+
+    <div class="auth-links">
+        @guest
+            <a href="{{ route('login') }}" class="login">Login</a>
+            <a href="{{ route('register') }}" class="register">Cadastrar</a>
+        @else
+            <a href="{{ route('profile.show') }}" class="profile-link">Meu Perfil</a>
+            <span class="user-greeting">Olá, {{ Auth::user()->name }}</span>
+            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="logout-btn">Sair</button>
+            </form>
+        @endguest
+    </div>
 </div>
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 @yield('content')
 </body>
 </html>
