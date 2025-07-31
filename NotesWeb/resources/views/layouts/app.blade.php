@@ -31,8 +31,8 @@
             <a href="{{ route('login') }}" class="login">Login</a>
             <a href="{{ route('register') }}" class="register">Cadastrar</a>
         @else
-            <a href="{{ route('profile.show') }}" class="profile-link">Meu Perfil</a>
             <span class="user-greeting">Olá, {{ Auth::user()->name }}</span>
+            <a href="{{ route('profile.show') }}" class="profile-link">Meu Perfil</a>
             <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                 @csrf
                 <button type="submit" class="logout-btn">Sair</button>
