@@ -45,7 +45,7 @@
                 </button>
             </div>
 
-            <div class="auth-links">
+            <div class="auth-links" style="transform: translateX(15%);">
                 <a href="{{ route('login') }}">
                     Já tem uma conta? Faça login
                 </a>

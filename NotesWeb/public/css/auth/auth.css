@@ -9,7 +9,7 @@ body {
     max-width: 400px;
     margin: 50px auto;
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 22px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
@@ -22,7 +22,6 @@ body {
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, #ff3333, #ff0000, #cc0000);
 }
 
 .auth-header {
@@ -104,6 +103,7 @@ body {
     text-align: center;
     margin-top: 20px;
     padding-bottom: 20px;
+    transform: translateX(11%);
 }
 
 .auth-links a {
@@ -129,6 +129,7 @@ body {
 .remember-me label {
     color: #555;
     font-size: 0.9rem;
+    margin-bottom: 1px;
 }
 
 .logout-btn {
